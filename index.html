@@ -12,9 +12,9 @@
 
     <!-- Navigation Bar -->
     <header class="bg-white shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-3">
             <h1 class="text-xl font-bold text-indigo-600">B-School<span class="text-slate-900">Vault</span></h1>
-            <nav class="space-x-6 text-sm font-medium">
+            <nav class="flex flex-wrap justify-center gap-4 text-sm font-medium">
                 <a href="index.html" class="text-indigo-600 font-semibold">Home</a>
                 <a href="case-studies.html" class="hover:text-indigo-600">Case Studies</a>
                 <a href="notes.html" class="hover:text-indigo-600">Semester Notes</a>
@@ -24,25 +24,25 @@
     </header>
 
     <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 py-10 flex-grow w-full">
+    <main class="max-w-7xl mx-auto px-4 py-6 sm:py-10 flex-grow w-full">
         
-        <!-- Hero Title (Bigger Size) -->
-        <div class="text-center mb-10">
+        <!-- Hero Title -->
+        <div class="text-center mb-8 sm:mb-10">
             <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Academic Portal</span>
-            <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mt-3 tracking-tight text-slate-900">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-black mt-3 tracking-tight text-slate-900">
                 Select Your Curriculum <span class="text-indigo-600">& Subjects</span>
             </h2>
-            <p class="text-base md:text-lg text-slate-600 mt-3 max-w-2xl mx-auto">
+            <p class="text-sm sm:text-base md:text-lg text-slate-600 mt-3 max-w-2xl mx-auto">
                 Filter resources tailored to your exact degree, semester, branch, and coursework.
             </p>
         </div>
 
         <!-- Selection Filters Grid -->
-        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 grid md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
             
             <!-- 1. Degree Type -->
             <div>
-                <label for="degreeSelect" class="block text-sm font-bold text-slate-700 mb-2">Degree Type</label>
+                <label for="degreeSelect" class="block text-xs sm:text-sm font-bold text-slate-700 mb-2">Degree Type</label>
                 <select id="degreeSelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                     <option value="" disabled selected>Select Degree</option>
                     <option value="mba">MBA (Master of Business Administration)</option>
@@ -52,7 +52,7 @@
 
             <!-- 2. Semester -->
             <div>
-                <label for="semesterSelect" class="block text-sm font-bold text-slate-700 mb-2">Semester</label>
+                <label for="semesterSelect" class="block text-xs sm:text-sm font-bold text-slate-700 mb-2">Semester</label>
                 <select id="semesterSelect" onchange="filterSubjects()" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                     <option value="sem1">Semester I</option>
                     <option value="sem2">Semester II</option>
@@ -63,7 +63,7 @@
 
             <!-- 3. Branch of Management -->
             <div>
-                <label for="branchSelect" class="block text-sm font-bold text-slate-700 mb-2">Branch of Management</label>
+                <label for="branchSelect" class="block text-xs sm:text-sm font-bold text-slate-700 mb-2">Branch of Management</label>
                 <select id="branchSelect" onchange="filterSubjects()" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                     <option value="" selected>All Specialization Branches</option>
                     <option value="marketing">Marketing Management</option>
@@ -78,18 +78,18 @@
 
         <!-- Live Search Bar -->
         <div class="mb-8">
-            <input type="text" id="searchInput" onkeyup="filterSubjects()" placeholder="🔍 Search any of the 47 modules (e.g., Python, AMFR, SCM, Excel)..." class="w-full bg-white border border-slate-200 rounded-xl p-4 text-sm shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            <input type="text" id="searchInput" onkeyup="filterSubjects()" placeholder="🔍 Search any of the 47 modules (e.g., Python, AMFR, SCM, Excel)..." class="w-full bg-white border border-slate-200 rounded-xl p-3 sm:p-4 text-sm shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
         </div>
 
         <!-- All 47 Unique Subjects Section -->
         <div>
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold tracking-tight">Available Subject Repositories (47 Modules)</h3>
-                <span id="matchCount" class="text-sm text-slate-500 font-medium">Please select a filter or type to view modules</span>
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-6">
+                <h3 class="text-xl sm:text-2xl font-bold tracking-tight">Available Subject Repositories (47 Modules)</h3>
+                <span id="matchCount" class="text-xs sm:text-sm text-slate-500 font-medium">Please select a filter or type to view modules</span>
             </div>
 
             <!-- Subjects Grid -->
-            <div id="subjectsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div id="subjectsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
                 
                 <script>
                     const subjectsData = [
@@ -125,11 +125,10 @@
                                 { title: 'Percentages', type: 'PDF', path: 'pdfs/Percentages.pdf' },
                                 { title: 'Profit and Loss', type: 'PDF', path: 'pdfs/PROFIT AND LOSS.pdf' },
                                 { title: 'Ratio and Proportions', type: 'PDF', path: 'pdfs/RATIO AND PROPORTIONS.pdf' }
-                                
                             ] 
                         },
                         { 
-                            name: 'Digital Marketing', branch: 'marketing', sem: 'sem2', 
+                            name: 'Digital Marketing', branch: 'marketing', sem: 'sem1', 
                             files: [
                                 { title: 'Affiliate Marketing', type: 'PPTX', path: 'pdfs/AFFILIATE_MARKETING.pptx' },
                                 { title: 'Catalogue Management', type: 'PPTX', path: 'pdfs/Catalouge Mgt [Auto-saved]2.pptx' },
@@ -143,7 +142,6 @@
                                 { title: 'Social Commerce & Influencer Marketing', type: 'PPTX', path: 'pdfs/Social_Commerce___Influencer_Marketing.pptx' },
                                 { title: 'Expanded Notes Integration', type: 'DOCX', path: 'pdfs/This expanded set of notes integrates the....docx' },
                                 { title: '10 Minute Delivery Audio Analysis', type: 'MP3', path: 'pdfs/दस_मिनट_डिलीवरी_का_असली_गणित (1).mp3' }
-                                
                             ] 
                         },
                         { 
@@ -156,7 +154,6 @@
                                 { title: 'Unit 1 Presentation (Part A)', type: 'PPTX', path: 'pdfs/UNIT 1 a.pptx' },
                                 { title: 'Unit 1 Classification and Tabulation', type: 'PDF', path: 'pdfs/Unit 1 CLASSIFICATION,TABULATION AN....pdf' },
                                 { title: 'Unit 1 Study Guide', type: 'PDF', path: 'pdfs/Unit 1.pdf' }
-                                
                             ] 
                         },
                         { 
@@ -168,14 +165,12 @@
                                 { title: 'Unit 1 Introduction', type: 'PPTX', path: 'pdfs/Unit-1 Intro.pptx' },
                                 { title: 'Unit 2 Demand', type: 'PPTX', path: 'pdfs/Unit-2 Demand.pptx' },
                                 { title: 'Unit 3 Supply', type: 'PPTX', path: 'pdfs/Unit-3 Supply.pptx' }
-                                
                             ] 
                         },
                         { 
                             name: 'HR', branch: 'hr', sem: 'sem1', 
                             files: [
-                                { title: 'HRM Notes', type: 'PDF', path: 'pdfs/HRM Notes.pdf' },
-                                
+                                { title: 'HRM Notes', type: 'PDF', path: 'pdfs/HRM Notes.pdf' }
                             ] 
                         },
                         { 
@@ -189,7 +184,6 @@
                                 { title: 'Law of Contract PPT (UCC)', type: 'PPTX', path: 'pdfs/Law of Contract PPT UCC.pptx' },
                                 { title: 'Company Law Presentation - Lecture 1', type: 'PPTX', path: 'pdfs/Presentation Lecture 1 - Company Law ppt.pptx' },
                                 { title: 'Sale of Goods Act 1930', type: 'PPTX', path: 'pdfs/Sale of Good Act 1930 2.pptx' }
-                                
                             ] 
                         },
                         { 
@@ -198,7 +192,6 @@
                                 { title: 'Customer Value Presentation', type: 'PPTX', path: 'pdfs/Customer Value.pptx' },
                                 { title: 'Introduction to Marketing', type: 'PPTX', path: 'pdfs/Introduction to Marketing.pptx' },
                                 { title: 'Market Research Presentation', type: 'PPTX', path: 'pdfs/market research.pptx' }
-                                
                             ] 
                         },
                         { 
@@ -207,7 +200,6 @@
                                 { title: 'EI Case Study', type: 'PPTX', path: 'pdfs/EI Case Study.pptx' },
                                 { title: 'Learning Notes', type: 'DOCX', path: 'pdfs/Learning notes.docx' },
                                 { title: 'Robbins & Judge OB Presentation', type: 'PPTX', path: 'pdfs/robbinsjudge_OB_inppt_01.pptx' }
-                                
                             ] 
                         },
                         { 
@@ -220,13 +212,11 @@
                                 { title: 'Session 1 TOM', type: 'PPTX', path: 'pdfs/Session 1 TOM.pptx' },
                                 { title: 'Session 2 Ops Strategy', type: 'PPTX', path: 'pdfs/Session 2 Ops Strategy.pptx' },
                                 { title: 'Session 4 & 5 Layout', type: 'PPTX', path: 'pdfs/Session 4 & 5 Layout.pptx' }
-                                
                             ] 
-                        },                        
+                        }
                     ];
 
                     subjectsData.forEach((sub, index) => {
-                        // Store object in global array for modal access
                         window[`sub_${index}`] = sub;
 
                         document.write(`
@@ -236,7 +226,7 @@
                                     <span class="font-semibold text-sm text-slate-800 my-2 block">${sub.name}</span>
                                 </div>
                                 <span class="text-xs bg-indigo-50 text-indigo-600 font-semibold px-3 py-1.5 rounded-lg hover:bg-indigo-600 hover:text-white transition mt-3 inline-block w-full">
-                                    View Files &rarr;
+                                    View Files →
                                 </span>
                             </div>
                         `);
@@ -250,22 +240,22 @@
 
     <!-- Resource Modal Popup -->
     <div id="resourceModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl border border-slate-100 relative animate-in fade-in zoom-in duration-150">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-xl border border-slate-100 relative animate-in fade-in zoom-in duration-150 max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center mb-4 border-b pb-3">
                 <div>
                     <span id="modalBranch" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded uppercase"></span>
-                    <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-1"></h3>
+                    <h3 id="modalTitle" class="text-lg sm:text-xl font-bold text-slate-900 mt-1"></h3>
                 </div>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold">&times;</button>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold">×</button>
             </div>
             
             <p class="text-xs text-slate-500 mb-4">Select a document or presentation below to download:</p>
             
-            <div id="modalFileList" class="space-y-3 max-h-60 overflow-y-auto pr-1">
+            <div id="modalFileList" class="space-y-3 overflow-y-auto pr-1 flex-grow">
                 <!-- Injected dynamically -->
             </div>
 
-            <div class="mt-6 text-right">
+            <div class="mt-6 text-right pt-2 border-t">
                 <button onclick="closeModal()" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-slate-200 transition">Close</button>
             </div>
         </div>
@@ -319,13 +309,13 @@
             let fileListHTML = '';
             sub.files.forEach(file => {
                 fileListHTML += `
-                    <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 hover:border-indigo-600 transition">
-                        <div>
-                            <span class="text-[10px] font-bold bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">${file.type}</span>
-                            <h4 class="text-sm font-semibold text-slate-800 mt-1">${file.title}</h4>
+                    <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 hover:border-indigo-600 transition gap-2">
+                        <div class="min-w-0 flex-1">
+                            <span class="text-[10px] font-bold bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded inline-block mb-1">${file.type}</span>
+                            <h4 class="text-xs sm:text-sm font-semibold text-slate-800 truncate">${file.title}</h4>
                         </div>
-                        <a href="${file.path}" download class="bg-indigo-600 text-white text-xs font-semibold px-3 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center gap-1 shadow-sm">
-                            Download &darr;
+                        <a href="${file.path}" download class="bg-indigo-600 text-white text-xs font-semibold px-3 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center gap-1 shadow-sm shrink-0">
+                            Download ↓
                         </a>
                     </div>
                 `;
@@ -349,8 +339,8 @@
     </script>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 mt-20 py-6 text-center text-sm text-slate-500">
-        <p>&copy; 2026 B-SchoolVault. All rights reserved. Built for Academic Project Execution.</p>
+    <footer class="bg-white border-t border-slate-200 mt-20 py-6 text-center text-xs sm:text-sm text-slate-500">
+        <p>© 2026 B-SchoolVault. All rights reserved. Built for Academic Project Execution.</p>
     </footer>
 
 </body>
