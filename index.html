@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B-SchoolVault | Student Resource & Subject Portal</title>
-    <meta name="description" content="Choose your semester, degree, and management branch to access curated B-School case studies, notes, and Python resources.">
+    <meta name="description" content="Choose your degree, semester, and management branch to access curated B-School case studies, notes, and resources.">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -18,7 +18,7 @@
                 <a href="index.html" class="text-indigo-600 font-semibold">Home</a>
                 <a href="case-studies.html" class="hover:text-indigo-600">Case Studies</a>
                 <a href="notes.html" class="hover:text-indigo-600">Semester Notes</a>
-                <a href="ppts.html" class="text-indigo-600 font-semibold">PPTs & Decks</a>
+                <a href="ppts.html" class="hover:text-indigo-600">PPTs & Decks</a>
             </nav>
         </div>
     </header>
@@ -26,7 +26,7 @@
     <!-- Main Container -->
     <main class="max-w-7xl mx-auto px-4 py-10 flex-grow w-full">
         
-        <!-- Hero Title (Bigger Size) -->
+        <!-- Hero Title -->
         <div class="text-center mb-10">
             <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Academic Portal</span>
             <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mt-3 tracking-tight text-slate-900">
@@ -43,10 +43,10 @@
             <!-- 1. Degree Type -->
             <div>
                 <label for="degreeSelect" class="block text-sm font-bold text-slate-700 mb-2">Degree Type</label>
-                <select id="degreeSelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                    <option value="" disabled selected>Select Degree</option>
+                <select id="degreeSelect" onchange="handleDegreeChange()" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    <option value="" disabled>Select Degree</option>
+                    <option value="pgdm" selected>PGDM (Post Graduate Diploma in Management)</option>
                     <option value="mba">MBA (Master of Business Administration)</option>
-                    <option value="pgdm">PGDM (Post Graduate Diploma in Management)</option>
                 </select>
             </div>
 
@@ -77,226 +77,137 @@
 
         </div>
 
-        <!-- Live Search Bar -->
-        <div class="mb-8">
-            <input type="text" id="searchInput" onkeyup="filterSubjects()" placeholder="🔍 Search any of the 47 modules (e.g., Python, AMFR, SCM, Excel)..." class="w-full bg-white border border-slate-200 rounded-xl p-4 text-sm shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-        </div>
-
-        <!-- All 47 Unique Subjects Section -->
-        <div>
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold tracking-tight">Available Subject Repositories (47 Modules)</h3>
-                <span id="matchCount" class="text-sm text-slate-500 font-medium">Please select a filter or type to view modules</span>
+        <!-- Dynamic Container for PGDM (47 Modules Grid) vs MBA Curriculum View -->
+        <div id="pgdmContainer">
+            <!-- Live Search Bar -->
+            <div class="mb-8">
+                <input type="text" id="searchInput" onkeyup="filterSubjects()" placeholder="🔍 Search any of the 47 modules (e.g., Python, AMFR, SCM, Excel)..." class="w-full bg-white border border-slate-200 rounded-xl p-4 text-sm shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
             </div>
 
-            <!-- Subjects Grid -->
-            <div id="subjectsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                
-                <script>
-                    const subjectsData = [
-                        { 
-                            name: 'AMFR', branch: 'finance', sem: 'sem2', 
-                            files: [
-                                { title: 'Trial Balance & Ledger Notes (PPT)', type: 'PPTX', path: 'pdfs/AFMR PPT trial balance.pptx' },
-                                { title: 'AMFR PPT 2', type: 'PPTX', path: 'pdfs/amfr ppt 2.pptx' },
-                                { title: 'AMFR PPT1 Fostiima', type: 'PPTX', path: 'pdfs/AMFR PPT1 Fostiima.pptx' },
-                                { title: 'GAAP PPT 3', type: 'PPTX', path: 'pdfs/GAAP-PPT3.pptx' },
-                                { title: 'Ledger 2', type: 'PPTX', path: 'pdfs/ledger2.pptx' },
-                                { title: 'Ratio Q2', type: 'DOCX', path: 'pdfs/Ratio Q2.docx' },
-                                { title: 'Ratio Question', type: 'DOCX', path: 'pdfs/Ratio Question.docx' },
-                                { title: 'Session About Company Terms', type: 'PDF', path: 'pdfs/Session about company terms.pdf' },
-                                { title: 'Transaction 3.3', type: 'PDF', path: 'pdfs/transaction 3.3.pdf' },
-                                { title: 'Transaction 3.4', type: 'PDF', path: 'pdfs/Transaction 3.4.pdf' },
-                                { title: 'Transaction 3.5', type: 'PDF', path: 'pdfs/transaction 3.5.pdf' },
-                                { title: 'Transaction 3.8', type: 'PDF', path: 'pdfs/Transaction 3.8.pdf' },
-                                { title: 'Transaction 3.2', type: 'PDF', path: 'pdfs/transaction3.2.pdf' },
-                                { title: 'Transaction 3.4 (Duplicate)', type: 'PDF', path: 'pdfs/transaction3.4.pdf' },
-                                { title: 'Transaction 3.6', type: 'PDF', path: 'pdfs/transaction3.6.pdf' },
-                                { title: 'Transaction 3.7', type: 'PDF', path: 'pdfs/Transacton 3.7.pdf' },
-                                { title: 'Trial Balance Exercise 1', type: 'DOCX', path: 'pdfs/trial balance-Exercise 1.docx' },
-                                { title: 'Trial Balance PPT Question Solution', type: 'DOCX', path: 'pdfs/trial balance-ppt question solution.docx' }
-                            ] 
-                        },
-                        { 
-                            name: 'Basic Maths', branch: 'Analytics', sem: 'sem1', 
-                            files: [
-                                { title: 'Chapter 7 Philoid', type: 'PDF', path: 'pdfs/Chapter 7_[Philoid-IN].pdf' },
-                                { title: 'Maths Practice Questions', type: 'PDF', path: 'pdfs/Maths Practice Questions.pdf' },
-                                { title: 'MCQ Basic Maths 1', type: 'DOCX', path: 'pdfs/MCQ BASIC MATHS 1.docx' },
-                                { title: 'Percentages', type: 'PDF', path: 'pdfs/Percentages.pdf' },
-                                { title: 'Profit and Loss', type: 'PDF', path: 'pdfs/PROFIT AND LOSS.pdf' },
-                                { title: 'Ratio and Proportions', type: 'PDF', path: 'pdfs/RATIO AND PROPORTIONS.pdf' }
-                                
-                            ] 
-                        },
-                        { name: 'BDA', branch: 'analytics', sem: 'sem3', files: [{ title: 'Big Data Overview', type: 'PDF', path: 'pdfs/bda-notes.pdf' }] },
-                        { name: 'BFSI', branch: 'finance', sem: 'sem2', files: [{ title: 'Banking Sector Report', type: 'PDF', path: 'pdfs/bfsi-notes.pdf' }] },
-                        { name: 'BMS', branch: 'operations', sem: 'sem2', files: [{ title: 'Business Modeling Notes', type: 'PDF', path: 'pdfs/bms-notes.pdf' }] },
-                        { name: 'Business Statistics', branch: 'analytics', sem: 'sem1', files: [{ title: 'Statistics Workbook', type: 'PDF', path: 'pdfs/business-stats.pdf' }] },
-                        { name: 'CRM', branch: 'marketing', sem: 'sem3', files: [{ title: 'Customer Relationship Frameworks', type: 'PDF', path: 'pdfs/crm-notes.pdf' }] },
-                        { name: 'Decision Sc', branch: 'operations', sem: 'sem2', files: [{ title: 'Decision Sciences Lecture', type: 'PDF', path: 'pdfs/decision-sc.pdf' }] },
-                        { name: 'DM', branch: 'marketing', sem: 'sem1', files: [{ title: 'Digital Marketing Fundamentals', type: 'PDF', path: 'pdfs/dm-notes.pdf' }] },
-                        { name: 'ECONOMICS', branch: 'finance', sem: 'sem1', files: [{ title: 'Managerial Economics Notes', type: 'PDF', path: 'pdfs/economics.pdf' }] },
-                        { name: 'ERP', branch: 'operations', sem: 'sem3', files: [{ title: 'Enterprise Resource Planning Guide', type: 'PDF', path: 'pdfs/erp-notes.pdf' }] },
-                        { name: 'ET', branch: 'hr', sem: 'sem1', files: [{ title: 'Ethics & Values Handbook', type: 'PDF', path: 'pdfs/et-notes.pdf' }] },
-                        { name: 'Excel', branch: 'analytics', sem: 'sem1', files: [{ title: 'Advanced Excel Shortcuts & Macros', type: 'XLSX', path: 'pdfs/excel-notes.xlsx' }] },
-                        { name: 'HISS', branch: 'operations', sem: 'sem2', files: [{ title: 'Service Systems Overview', type: 'PDF', path: 'pdfs/hiss-notes.pdf' }] },
-                        { name: 'HISS PREP', branch: 'operations', sem: 'sem3', files: [{ title: 'HISS Exam Prep Deck', type: 'PDF', path: 'pdfs/hiss-prep.pdf' }] },
-                        { name: 'HRM', branch: 'hr', sem: 'sem1', files: [{ title: 'Human Resource Management Notes', type: 'PDF', path: 'pdfs/hrm-notes.pdf' }] },
-                        { name: 'I&W', branch: 'marketing', sem: 'sem3', files: [{ title: 'Advertising & Promotion Deck', type: 'PDF', path: 'pdfs/iw-notes.pdf' }] },
-                        { name: 'IBC', branch: 'finance', sem: 'sem2', files: [{ title: 'International Business Concepts', type: 'PDF', path: 'pdfs/ibc-notes.pdf' }] },
-                        { name: 'IM', branch: 'operations', sem: 'sem3', files: [{ title: 'Inventory Management Guide', type: 'PDF', path: 'pdfs/im-notes.pdf' }] },
-                        { name: 'IMC', branch: 'marketing', sem: 'sem3', files: [{ title: 'Integrated Marketing Comms', type: 'PDF', path: 'pdfs/imc-notes.pdf' }] },
-                        { name: 'LAB', branch: 'hr', sem: 'sem2', files: [{ title: 'Leadership & Behavior Labs', type: 'PDF', path: 'pdfs/lab-notes.pdf' }] },
-                        { name: 'LM', branch: 'operations', sem: 'sem3', files: [{ title: 'Logistics Management Manual', type: 'PDF', path: 'pdfs/lm-notes.pdf' }] },
-                        { name: 'LMSS', branch: 'operations', sem: 'sem3', files: [{ title: 'Lean Six Sigma Notes', type: 'PDF', path: 'pdfs/lmss-notes.pdf' }] },
-                        { name: 'MA', branch: 'finance', sem: 'sem2', files: [{ title: 'Management Accounting Guide', type: 'PDF', path: 'pdfs/ma-notes.pdf' }] },
-                        { name: 'MIS', branch: 'analytics', sem: 'sem3', files: [{ title: 'Management Information Systems', type: 'PDF', path: 'pdfs/mis-notes.pdf' }] },
-                        { name: 'MM-1', branch: 'marketing', sem: 'sem1', files: [{ title: 'Marketing Management 1 Notes', type: 'PDF', path: 'pdfs/mm1-notes.pdf' }] },
-                        { name: 'MM2', branch: 'marketing', sem: 'sem2', files: [{ title: 'Marketing Management 2 Notes', type: 'PDF', path: 'pdfs/mm2-notes.pdf' }] },
-                        { name: 'MR', branch: 'marketing', sem: 'sem2', files: [{ title: 'Market Research Methodologies', type: 'PDF', path: 'pdfs/mr-notes.pdf' }] },
-                        { name: 'MSPO', branch: 'operations', sem: 'sem1', files: [{ title: 'Manufacturing & Operations Basics', type: 'PDF', path: 'pdfs/mspo-notes.pdf' }] },
-                        { name: 'MSPO2', branch: 'operations', sem: 'sem2', files: [{ title: 'Advanced MSPO Concepts', type: 'PDF', path: 'pdfs/mspo2-notes.pdf' }] },
-                        { name: 'N&CB', branch: 'marketing', sem: 'sem3', files: [{ title: 'Consumer Behavior Frameworks', type: 'PDF', path: 'pdfs/ncb-notes.pdf' }] },
-                        { name: 'P&BM', branch: 'marketing', sem: 'sem3', files: [{ title: 'Pricing & Brand Management', type: 'PDF', path: 'pdfs/pbm-notes.pdf' }] },
-                        { name: 'PA', branch: 'analytics', sem: 'sem3', files: [{ title: 'Predictive Analytics Notes', type: 'PDF', path: 'pdfs/pa-notes.pdf' }] },
-                        { name: 'RETAIL MGMT', branch: 'marketing', sem: 'sem3', files: [{ title: 'Retail Operations & Store Management', type: 'PDF', path: 'pdfs/retail-mgmt.pdf' }] },
-                        { name: 'RURAL MGMT', branch: 'marketing', sem: 'sem3', files: [{ title: 'Rural Marketing & Distribution', type: 'PDF', path: 'pdfs/rural-mgmt.pdf' }] },
-                        { name: 'SCM', branch: 'operations', sem: 'sem2', files: [{ title: 'Supply Chain Logistics Notes', type: 'PDF', path: 'pdfs/scm-notes.pdf' }] },
-                        { name: 'SDM', branch: 'marketing', sem: 'sem3', files: [{ title: 'Sales & Distribution Management', type: 'PDF', path: 'pdfs/sdm-notes.pdf' }] },
-                        { name: 'SM', branch: 'marketing', sem: 'sem3', files: [{ title: 'Strategic Management Deck', type: 'PDF', path: 'pdfs/sm-notes.pdf' }] },
-                        { name: 'SOM', branch: 'operations', sem: 'sem3', files: [{ title: 'Service Operations Management', type: 'PDF', path: 'pdfs/som-notes.pdf' }] },
-                        { name: 'TOM', branch: 'operations', sem: 'sem1', files: [{ title: 'Theory of Operations Management', type: 'PDF', path: 'pdfs/tom-notes.pdf' }] },
-                        { name: 'TQM', branch: 'operations', sem: 'sem3', files: [{ title: 'Total Quality Management Notes', type: 'PDF', path: 'pdfs/tqm-notes.pdf' }] }
-                    ];
-
-                    subjectsData.forEach((sub, index) => {
-                        // Store object in global array for modal access
-                        window[`sub_${index}`] = sub;
-
-                        document.write(`
-                            <div class="subject-card bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center hover:border-indigo-600 hover:shadow-md transition flex flex-col justify-between items-center cursor-pointer" style="display: none;" data-name="${sub.name.toLowerCase()}" data-branch="${sub.branch}" data-sem="${sub.sem}" onclick="openModal(${index})">
-                                <div>
-                                    <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded mb-2 inline-block">${sub.branch.toUpperCase()}</span>
-                                    <span class="font-semibold text-sm text-slate-800 my-2 block">${sub.name}</span>
-                                </div>
-                                <span class="text-xs bg-indigo-50 text-indigo-600 font-semibold px-3 py-1.5 rounded-lg hover:bg-indigo-600 hover:text-white transition mt-3 inline-block w-full">
-                                    View Files &rarr;
-                                </span>
-                            </div>
-                        `);
-                    });
-                </script>
-
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Resource Modal Popup -->
-    <div id="resourceModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl border border-slate-100 relative animate-in fade-in zoom-in duration-150">
-            <div class="flex justify-between items-center mb-4 border-b pb-3">
-                <div>
-                    <span id="modalBranch" class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded uppercase"></span>
-                    <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-1"></h3>
+            <!-- All 47 Unique Subjects Section -->
+            <div>
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold tracking-tight">Available Subject Repositories (47 Modules)</h3>
+                    <span id="matchCount" class="text-sm text-slate-500 font-medium">Please select a filter or type to view modules</span>
                 </div>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold">&times;</button>
-            </div>
-            
-            <p class="text-xs text-slate-500 mb-4">Select a document or presentation below to download:</p>
-            
-            <div id="modalFileList" class="space-y-3 max-h-60 overflow-y-auto pr-1">
-                <!-- Injected dynamically -->
-            </div>
 
-            <div class="mt-6 text-right">
-                <button onclick="closeModal()" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-slate-200 transition">Close</button>
+                <!-- Subjects Grid -->
+                <div id="subjectsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    
+                    <script>
+                        const subjectsData = [
+                            { 
+                                name: 'AMFR', branch: 'finance', sem: 'sem2', 
+                                files: [
+                                    { title: 'Trial Balance & Ledger Notes (PPT)', type: 'PPTX', path: 'pdfs/AFMR PPT trial balance.pptx' },
+                                    { title: 'AMFR PPT 2', type: 'PPTX', path: 'pdfs/amfr ppt 2.pptx' },
+                                    { title: 'AMFR PPT1 Fostiima', type: 'PPTX', path: 'pdfs/AMFR PPT1 Fostiima.pptx' },
+                                    { title: 'GAAP PPT 3', type: 'PPTX', path: 'pdfs/GAAP-PPT3.pptx' },
+                                    { title: 'Ledger 2', type: 'PPTX', path: 'pdfs/ledger2.pptx' },
+                                    { title: 'Ratio Q2', type: 'DOCX', path: 'pdfs/Ratio Q2.docx' },
+                                    { title: 'Ratio Question', type: 'DOCX', path: 'pdfs/Ratio Question.docx' },
+                                    { title: 'Session About Company Terms', type: 'PDF', path: 'pdfs/Session about company terms.pdf' },
+                                    { title: 'Transaction 3.3', type: 'PDF', path: 'pdfs/transaction 3.3.pdf' },
+                                    { title: 'Transaction 3.4', type: 'PDF', path: 'pdfs/Transaction 3.4.pdf' },
+                                    { title: 'Transaction 3.5', type: 'PDF', path: 'pdfs/transaction 3.5.pdf' },
+                                    { title: 'Transaction 3.8', type: 'PDF', path: 'pdfs/Transaction 3.8.pdf' },
+                                    { title: 'Transaction 3.2', type: 'PDF', path: 'pdfs/transaction3.2.pdf' },
+                                    { title: 'Transaction 3.4 (Duplicate)', type: 'PDF', path: 'pdfs/transaction3.4.pdf' },
+                                    { title: 'Transaction 3.6', type: 'PDF', path: 'pdfs/transaction3.6.pdf' },
+                                    { title: 'Transaction 3.7', type: 'PDF', path: 'pdfs/Transacton 3.7.pdf' },
+                                    { title: 'Trial Balance Exercise 1', type: 'DOCX', path: 'pdfs/trial balance-Exercise 1.docx' },
+                                    { title: 'Trial Balance PPT Question Solution', type: 'DOCX', path: 'pdfs/trial balance-ppt question solution.docx' }
+                                ] 
+                            },
+                            { 
+                                name: 'Basic Maths', branch: 'analytics', sem: 'sem1', 
+                                files: [
+                                    { title: 'Chapter 7 Philoid', type: 'PDF', path: 'pdfs/Chapter 7_[Philoid-IN].pdf' },
+                                    { title: 'Maths Practice Questions', type: 'PDF', path: 'pdfs/Maths Practice Questions.pdf' },
+                                    { title: 'MCQ Basic Maths 1', type: 'DOCX', path: 'pdfs/MCQ BASIC MATHS 1.docx' },
+                                    { title: 'Percentages', type: 'PDF', path: 'pdfs/Percentages.pdf' },
+                                    { title: 'Profit and Loss', type: 'PDF', path: 'pdfs/PROFIT AND LOSS.pdf' },
+                                    { title: 'Ratio and Proportions', type: 'PDF', path: 'pdfs/RATIO AND PROPORTIONS.pdf' }
+                                ] 
+                            },
+                            { name: 'BDA', branch: 'analytics', sem: 'sem3', files: [{ title: 'Big Data Overview', type: 'PDF', path: 'pdfs/bda-notes.pdf' }] },
+                            { name: 'BFSI', branch: 'finance', sem: 'sem2', files: [{ title: 'Banking Sector Report', type: 'PDF', path: 'pdfs/bfsi-notes.pdf' }] },
+                            { name: 'BMS', branch: 'operations', sem: 'sem2', files: [{ title: 'Business Modeling Notes', type: 'PDF', path: 'pdfs/bms-notes.pdf' }] },
+                            { name: 'Business Statistics', branch: 'analytics', sem: 'sem1', files: [{ title: 'Statistics Workbook', type: 'PDF', path: 'pdfs/business-stats.pdf' }] },
+                            { name: 'CRM', branch: 'marketing', sem: 'sem3', files: [{ title: 'Customer Relationship Frameworks', type: 'PDF', path: 'pdfs/crm-notes.pdf' }] },
+                            { name: 'Decision Sc', branch: 'operations', sem: 'sem2', files: [{ title: 'Decision Sciences Lecture', type: 'PDF', path: 'pdfs/decision-sc.pdf' }] },
+                            { name: 'DM', branch: 'marketing', sem: 'sem1', files: [{ title: 'Digital Marketing Fundamentals', type: 'PDF', path: 'pdfs/dm-notes.pdf' }] },
+                            { name: 'ECONOMICS', branch: 'finance', sem: 'sem1', files: [{ title: 'Managerial Economics Notes', type: 'PDF', path: 'pdfs/economics.pdf' }] },
+                            { name: 'ERP', branch: 'operations', sem: 'sem3', files: [{ title: 'Enterprise Resource Planning Guide', type: 'PDF', path: 'pdfs/erp-notes.pdf' }] },
+                            { name: 'ET', branch: 'hr', sem: 'sem1', files: [{ title: 'Ethics & Values Handbook', type: 'PDF', path: 'pdfs/et-notes.pdf' }] },
+                            { name: 'Excel', branch: 'analytics', sem: 'sem1', files: [{ title: 'Advanced Excel Shortcuts & Macros', type: 'XLSX', path: 'pdfs/excel-notes.xlsx' }] },
+                            { name: 'HISS', branch: 'operations', sem: 'sem2', files: [{ title: 'Service Systems Overview', type: 'PDF', path: 'pdfs/hiss-notes.pdf' }] },
+                            { name: 'HISS PREP', branch: 'operations', sem: 'sem3', files: [{ title: 'HISS Exam Prep Deck', type: 'PDF', path: 'pdfs/hiss-prep.pdf' }] },
+                            { name: 'HRM', branch: 'hr', sem: 'sem1', files: [{ title: 'Human Resource Management Notes', type: 'PDF', path: 'pdfs/hrm-notes.pdf' }] },
+                            { name: 'I&W', branch: 'marketing', sem: 'sem3', files: [{ title: 'Advertising & Promotion Deck', type: 'PDF', path: 'pdfs/iw-notes.pdf' }] },
+                            { name: 'IBC', branch: 'finance', sem: 'sem2', files: [{ title: 'International Business Concepts', type: 'PDF', path: 'pdfs/ibc-notes.pdf' }] },
+                            { name: 'IM', branch: 'operations', sem: 'sem3', files: [{ title: 'Inventory Management Guide', type: 'PDF', path: 'pdfs/im-notes.pdf' }] },
+                            { name: 'IMC', branch: 'marketing', sem: 'sem3', files: [{ title: 'Integrated Marketing Comms', type: 'PDF', path: 'pdfs/imc-notes.pdf' }] },
+                            { name: 'LAB', branch: 'hr', sem: 'sem2', files: [{ title: 'Leadership & Behavior Labs', type: 'PDF', path: 'pdfs/lab-notes.pdf' }] },
+                            { name: 'LM', branch: 'operations', sem: 'sem3', files: [{ title: 'Logistics Management Manual', type: 'PDF', path: 'pdfs/lm-notes.pdf' }] },
+                            { name: 'LMSS', branch: 'operations', sem: 'sem3', files: [{ title: 'Lean Six Sigma Notes', type: 'PDF', path: 'pdfs/lmss-notes.pdf' }] },
+                            { name: 'MA', branch: 'finance', sem: 'sem2', files: [{ title: 'Management Accounting Guide', type: 'PDF', path: 'pdfs/ma-notes.pdf' }] },
+                            { name: 'MIS', branch: 'analytics', sem: 'sem3', files: [{ title: 'Management Information Systems', type: 'PDF', path: 'pdfs/mis-notes.pdf' }] },
+                            { name: 'MM-1', branch: 'marketing', sem: 'sem1', files: [{ title: 'Marketing Management 1 Notes', type: 'PDF', path: 'pdfs/mm1-notes.pdf' }] },
+                            { name: 'MM2', branch: 'marketing', sem: 'sem2', files: [{ title: 'Marketing Management 2 Notes', type: 'PDF', path: 'pdfs/mm2-notes.pdf' }] },
+                            { name: 'MR', branch: 'marketing', sem: 'sem2', files: [{ title: 'Market Research Methodologies', type: 'PDF', path: 'pdfs/mr-notes.pdf' }] },
+                            { name: 'MSPO', branch: 'operations', sem: 'sem1', files: [{ title: 'Manufacturing & Operations Basics', type: 'PDF', path: 'pdfs/mspo-notes.pdf' }] },
+                            { name: 'MSPO2', branch: 'operations', sem: 'sem2', files: [{ title: 'Advanced MSPO Concepts', type: 'PDF', path: 'pdfs/mspo2-notes.pdf' }] },
+                            { name: 'N&CB', branch: 'marketing', sem: 'sem3', files: [{ title: 'Consumer Behavior Frameworks', type: 'PDF', path: 'pdfs/ncb-notes.pdf' }] },
+                            { name: 'P&BM', branch: 'marketing', sem: 'sem3', files: [{ title: 'Pricing & Brand Management', type: 'PDF', path: 'pdfs/pbm-notes.pdf' }] },
+                            { name: 'PA', branch: 'analytics', sem: 'sem3', files: [{ title: 'Predictive Analytics Notes', type: 'PDF', path: 'pdfs/pa-notes.pdf' }] },
+                            { name: 'RETAIL MGMT', branch: 'marketing', sem: 'sem3', files: [{ title: 'Retail Operations & Store Management', type: 'PDF', path: 'pdfs/retail-mgmt.pdf' }] },
+                            { name: 'RURAL MGMT', branch: 'marketing', sem: 'sem3', files: [{ title: 'Rural Marketing & Distribution', type: 'PDF', path: 'pdfs/rural-mgmt.pdf' }] },
+                            { name: 'SCM', branch: 'operations', sem: 'sem2', files: [{ title: 'Supply Chain Logistics Notes', type: 'PDF', path: 'pdfs/scm-notes.pdf' }] },
+                            { name: 'SDM', branch: 'marketing', sem: 'sem3', files: [{ title: 'Sales & Distribution Management', type: 'PDF', path: 'pdfs/sdm-notes.pdf' }] },
+                            { name: 'SM', branch: 'marketing', sem: 'sem3', files: [{ title: 'Strategic Management Deck', type: 'PDF', path: 'pdfs/sm-notes.pdf' }] },
+                            { name: 'SOM', branch: 'operations', sem: 'sem3', files: [{ title: 'Service Operations Management', type: 'PDF', path: 'pdfs/som-notes.pdf' }] },
+                            { name: 'TOM', branch: 'operations', sem: 'sem1', files: [{ title: 'Theory of Operations Management', type: 'PDF', path: 'pdfs/tom-notes.pdf' }] },
+                            { name: 'TQM', branch: 'operations', sem: 'sem3', files: [{ title: 'Total Quality Management Notes', type: 'PDF', path: 'pdfs/tqm-notes.pdf' }] }
+                        ];
+
+                        subjectsData.forEach((sub, index) => {
+                            window[`sub_${index}`] = sub;
+
+                            document.write(`
+                                <div class="subject-card bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center hover:border-indigo-600 hover:shadow-md transition flex flex-col justify-between items-center cursor-pointer" style="display: none;" data-name="${sub.name.toLowerCase()}" data-branch="${sub.branch}" data-sem="${sub.sem}" onclick="openModal(${index})">
+                                    <div>
+                                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded mb-2 inline-block">${sub.branch.toUpperCase()}</span>
+                                        <span class="font-semibold text-sm text-slate-800 my-2 block">${sub.name}</span>
+                                    </div>
+                                    <span class="text-xs bg-indigo-50 text-indigo-600 font-semibold px-3 py-1.5 rounded-lg hover:bg-indigo-600 hover:text-white transition mt-3 inline-block w-full">
+                                        View Files →
+                                    </span>
+                                </div>
+                            `);
+                        });
+                    </script>
+
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- JavaScript Filter & Modal Engine -->
-    <script>
-        function filterSubjects() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase();
-            const selectedSemester = document.getElementById('semesterSelect').value;
-            const selectedBranch = document.getElementById('branchSelect').value;
-            const cards = document.querySelectorAll('.subject-card');
-            
-            const isFilterActive = searchInput.length > 0 || selectedSemester !== "" || selectedBranch !== "";
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                if (!isFilterActive) {
-                    card.style.display = 'none';
-                    return;
-                }
-
-                const name = card.getAttribute('data-name');
-                const branch = card.getAttribute('data-branch');
-                const sem = card.getAttribute('data-sem');
-
-                const matchesSearch = searchInput === '' || name.includes(searchInput);
-                const matchesSem = !selectedSemester || sem === selectedSemester;
-                const matchesBranch = !selectedBranch || branch === selectedBranch;
-
-                if (matchesSearch && matchesSem && matchesBranch) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (!isFilterActive) {
-                document.getElementById('matchCount').innerText = 'Please select a filter or type to view modules';
-            } else {
-                document.getElementById('matchCount').innerText = `Showing ${visibleCount} matching subjects`;
-            }
-        }
-
-        function openModal(index) {
-            const sub = window[`sub_${index}`];
-            document.getElementById('modalTitle').innerText = sub.name;
-            document.getElementById('modalBranch').innerText = sub.branch.toUpperCase();
-
-            let fileListHTML = '';
-            sub.files.forEach(file => {
-                fileListHTML += `
-                    <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 hover:border-indigo-600 transition">
-                        <div>
-                            <span class="text-[10px] font-bold bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">${file.type}</span>
-                            <h4 class="text-sm font-semibold text-slate-800 mt-1">${file.title}</h4>
-                        </div>
-                        <a href="${file.path}" download class="bg-indigo-600 text-white text-xs font-semibold px-3 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center gap-1 shadow-sm">
-                            Download &darr;
-                        </a>
+        <!-- MBA Curriculum View (Hidden by default, shown when MBA is selected) -->
+        <div id="mbaContainer" class="hidden space-y-10">
+            <!-- Core Subjects (First Year) -->
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Semesters I & II</span>
+                <h3 class="text-2xl font-bold tracking-tight text-slate-900 mt-2 mb-6">Core Subjects (First Year Foundations)</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded">Finance</span>
+                        <h4 class="font-bold text-slate-800 mt-2 text-base">Financial Accounting & Corporate Finance</h4>
+                        <p class="text-xs text-slate-600 mt-1">Financial reporting, budgeting, and investment decisions.</p>
                     </div>
-                `;
-            });
-
-            document.getElementById('modalFileList').innerHTML = fileListHTML;
-            document.getElementById('resourceModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('resourceModal').classList.add('hidden');
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('resourceModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-    </script>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 mt-20 py-6 text-center text-sm text-slate-500">
-        <p>&copy; 2026 B-SchoolVault. All rights reserved. Built for Academic Project Execution.</p>
-    </footer>
-
-</body>
-</html>
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded">Marketing</span>
+                        <h4 class="font-bold text-slate-800 mt-2 text-base">Marketing Management</h4>
+                        <p class="text-xs text-slate-600 mt-1">Consumer behavior, brand strategy, and market analysis.</p>
+                    </div>
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="text-xs font-bold text-indigo-6
