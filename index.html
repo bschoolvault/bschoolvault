@@ -260,7 +260,6 @@
             }
         ];
 
-        // Render subject cards cleanly into #subjectsGrid
         const subjectsGrid = document.getElementById('subjectsGrid');
         subjectsData.forEach((sub, index) => {
             window[`sub_${index}`] = sub;
@@ -353,7 +352,6 @@
             document.getElementById('resourceModal').classList.add('hidden');
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('resourceModal');
             if (event.target === modal) {
@@ -361,7 +359,6 @@
             }
         }
 
-        // Run filter on load so the initial Semester I count & cards appear
         window.addEventListener('DOMContentLoaded', filterSubjects);
     </script>
 
