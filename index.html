@@ -78,13 +78,15 @@
 
         <!-- Live Search Bar -->
         <div class="mb-8">
-            <input type="text" id="searchInput" onkeyup="filterSubjects()" placeholder="🔍 Search any of the 66 modules (e.g., Python, AMFR, SCM, Excel)..." class="w-full bg-white border border-slate-200 rounded-xl p-3 sm:p-4 text-sm shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            <input type="text" id="searchInput" onkeyup="filterSubjects()" placeholder="🔍 Search modules (e.g., Python, AMFR, SCM, Excel)..." class="w-full bg-white border border-slate-200 rounded-xl p-3 sm:p-4 text-sm shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
         </div>
 
-        <!-- All 66 Unique Subjects Section -->
+        <!-- Dynamic Subjects Section -->
         <div>
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-6">
-                <h3 class="text-xl sm:text-2xl font-bold tracking-tight">Available Subject Repositories (66 Modules)</h3>
+                <h3 id="subjectRepoHeading" class="text-xl sm:text-2xl font-bold tracking-tight">
+                    Available Subject Repositories (<span id="totalModulesCount">0</span> Modules)
+                </h3>
                 <span id="matchCount" class="text-xs sm:text-sm text-slate-500 font-medium">Please select a filter or type to view modules</span>
             </div>
 
@@ -230,6 +232,9 @@
                             ] 
                         }
                     ];
+
+                    // Automatically count and display total modules
+                    document.getElementById('totalModulesCount').innerText = subjectsData.length;
 
                     subjectsData.forEach((sub, index) => {
                         window[`sub_${index}`] = sub;
