@@ -91,169 +91,7 @@
             </div>
 
             <!-- Subjects Grid -->
-            <div id="subjectsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-                
-                <script>
-                    const subjectsData = [
-                        { 
-                            name: 'AMFR', branch: 'finance', sem: 'sem1', 
-                            files: [
-                                { title: 'Trial Balance & Ledger Notes (PPT)', type: 'PPTX', path: 'pdfs/AFMR PPT trial balance.pptx' },
-                                { title: 'AMFR PPT 2', type: 'PPTX', path: 'pdfs/amfr ppt 2.pptx' },
-                                { title: 'AMFR PPT1 Fostiima', type: 'PPTX', path: 'pdfs/AMFR PPT1 Fostiima.pptx' },
-                                { title: 'GAAP PPT 3', type: 'PPTX', path: 'pdfs/GAAP-PPT3.pptx' },
-                                { title: 'Ledger 2', type: 'PPTX', path: 'pdfs/ledger2.pptx' },
-                                { title: 'Ratio Q2', type: 'DOCX', path: 'pdfs/Ratio Q2.docx' },
-                                { title: 'Ratio Question', type: 'DOCX', path: 'pdfs/Ratio Question.docx' },
-                                { title: 'Session About Company Terms', type: 'PDF', path: 'pdfs/Session about company terms.pdf' },
-                                { title: 'Transaction 3.3', type: 'PDF', path: 'pdfs/transaction 3.3.pdf' },
-                                { title: 'Transaction 3.4', type: 'PDF', path: 'pdfs/Transaction 3.4.pdf' },
-                                { title: 'Transaction 3.5', type: 'PDF', path: 'pdfs/transaction 3.5.pdf' },
-                                { title: 'Transaction 3.8', type: 'PDF', path: 'pdfs/Transaction 3.8.pdf' },
-                                { title: 'Transaction 3.2', type: 'PDF', path: 'pdfs/transaction3.2.pdf' },
-                                { title: 'Transaction 3.4 (Duplicate)', type: 'PDF', path: 'pdfs/transaction3.4.pdf' },
-                                { title: 'Transaction 3.6', type: 'PDF', path: 'pdfs/transaction3.6.pdf' },
-                                { title: 'Transaction 3.7', type: 'PDF', path: 'pdfs/Transacton 3.7.pdf' },
-                                { title: 'Trial Balance Exercise 1', type: 'DOCX', path: 'pdfs/trial balance-Exercise 1.docx' },
-                                { title: 'Trial Balance PPT Question Solution', type: 'DOCX', path: 'pdfs/trial balance-ppt question solution.docx' },
-                                { title: 'Accounts Mid Term Test 1 Set A1', type: 'PDF', path: 'pdfs/Accounts Mid term Test 1 Set A1.pdf' },
-                                { title: 'AMFR Paper', type: 'DOCX', path: 'pdfs/AMFR Paper.docx' },
-                                { title: 'AMFR Set 1 (23-25)', type: 'DOCX', path: 'pdfs/AMFR set 1 23-25.docx' },
-                                { title: 'AMFR Set 2 (23-25)', type: 'DOCX', path: 'pdfs/AMFR set 2 23-25.docx' },
-                                { title: 'AMFR Set B', type: 'DOCX', path: 'pdfs/AMFR set b.docx' }
-                            ] 
-                        },
-                        { 
-                            name: 'Basic Maths', branch: 'analytics', sem: 'sem1', 
-                            files: [
-                                { title: 'Chapter 7 Philoid', type: 'PDF', path: 'pdfs/Chapter 7_[Philoid-IN].pdf' },
-                                { title: 'Maths Practice Questions', type: 'PDF', path: 'pdfs/Maths Practice Questions.pdf' },
-                                { title: 'MCQ Basic Maths 1', type: 'DOCX', path: 'pdfs/MCQ BASIC MATHS 1.docx' },
-                                { title: 'Percentages', type: 'PDF', path: 'pdfs/Percentages.pdf' },
-                                { title: 'Profit and Loss', type: 'PDF', path: 'pdfs/PROFIT AND LOSS.pdf' },
-                                { title: 'Ratio and Proportions', type: 'PDF', path: 'pdfs/RATIO AND PROPORTIONS.pdf' }
-                            ] 
-                        },
-                        { 
-                            name: 'Digital Marketing', branch: 'marketing', sem: 'sem1', 
-                            files: [
-                                { title: 'Affiliate Marketing', type: 'PPTX', path: 'pdfs/AFFILIATE_MARKETING.pptx' },
-                                { title: 'Catalogue Management', type: 'PPTX', path: 'pdfs/Catalouge Mgt [Auto-saved]2.pptx' },
-                                { title: 'Dropshipping', type: 'PPTX', path: 'pdfs/Dropshipping.pptx' },
-                                { title: 'E-Comm Business Models', type: 'PPTX', path: 'pdfs/E-COMM_BUSINESS_MODELS.pptx' },
-                                { title: 'Lead Generation Presentation', type: 'PPTX', path: 'pdfs/Lead_Generation_Presentation.pptx' },
-                                { title: 'Payments in E-Commerce', type: 'PPTX', path: 'pdfs/Payments in ECommerce2.pptx' },
-                                { title: 'Q-Commerce', type: 'PPTX', path: 'pdfs/Q-Commerce2.pptx' },
-                                { title: 'Revenue Streams E-Commerce', type: 'PPTX', path: 'pdfs/Revenue_streams-Ecommerce2.pptx' },
-                                { title: 'Session 4 SCM', type: 'PPTX', path: 'pdfs/Session 4-Scm.pptx' },
-                                { title: 'Social Commerce & Influencer Marketing', type: 'PPTX', path: 'pdfs/Social_Commerce___Influencer_Marketing.pptx' },
-                                { title: 'Expanded Notes Integration', type: 'DOCX', path: 'pdfs/This expanded set of notes integrates the....docx' },
-                                { title: '10 Minute Delivery Audio Analysis', type: 'MP3', path: 'pdfs/दस_मिनट_डिलीवरी_का_असली_गणित (1).mp3' },
-                                { title: 'End Sem Exam (1)', type: 'JPG', path: 'pdfs/end sem exam (1).jpg' },
-                                { title: 'End Sem Exam (2)', type: 'JPG', path: 'pdfs/end sem exam (2).jpg' }
-                            ] 
-                        },
-                        { 
-                            name: 'Business Statistics', branch: 'analytics', sem: 'sem1', 
-                            files: [
-                                { title: 'Accounts Notes & Material', type: 'PDF', path: 'pdfs/Accounts.pdf' },
-                                { title: 'End Sem Paper 1', type: 'JPG', path: 'pdfs/end sem paper (1).jpg' },
-                                { title: 'End Sem Paper 2', type: 'JPG', path: 'pdfs/end sem paper (2).jpg' },
-                                { title: 'Frequency Distribution', type: 'PDF', path: 'pdfs/frequency distribution (1).pdf' },
-                                { title: 'Unit 1 Presentation (Part A)', type: 'PPTX', path: 'pdfs/UNIT 1 a.pptx' },
-                                { title: 'Unit 1 Classification and Tabulation', type: 'PDF', path: 'pdfs/Unit 1 CLASSIFICATION,TABULATION AN....pdf' },
-                                { title: 'Unit 1 Study Guide', type: 'PDF', path: 'pdfs/Unit 1.pdf' },
-                                { title: 'End Sem (1)', type: 'JPG', path: 'pdfs/end sem (1).jpg' },
-                                { title: 'End Sem (2)', type: 'JPG', path: 'pdfs/end sem (2).jpg' }
-                            ] 
-                        },
-                        { 
-                            name: 'Economics', branch: 'finance', sem: 'sem1', 
-                            files: [
-                                { title: 'National Income Notes', type: 'PDF', path: 'pdfs/National income.pdf' },
-                                { title: 'Semester 1 Paper', type: 'JPG', path: 'pdfs/paper sem 1.jpg' },
-                                { title: 'Question Bank', type: 'PDF', path: 'pdfs/Question bank.pdf' },
-                                { title: 'Unit 1 Introduction', type: 'PPTX', path: 'pdfs/Unit-1 Intro.pptx' },
-                                { title: 'Unit 2 Demand', type: 'PPTX', path: 'pdfs/Unit-2 Demand.pptx' },
-                                { title: 'Unit 3 Supply', type: 'PPTX', path: 'pdfs/Unit-3 Supply.pptx' }
-                            ] 
-                        },
-                        { 
-                            name: 'HR', branch: 'hr', sem: 'sem1', 
-                            files: [
-                                { title: 'HRM Notes', type: 'PDF', path: 'pdfs/HRM Notes.pdf' }
-                            ] 
-                        },
-                        {
-                            name: 'Excel', branch: 'analytics', sem: 'sem1',
-                            files: [
-                                { title: 'Paper End Sem', type: 'JPG', path: 'pdfs/paper end sem.jpg' }
-                            ]
-                        },
-                        { 
-                            name: 'Legal Aspects of Business', branch: '', sem: 'sem1', 
-                            files: [
-                                { title: '20 Notable Contract Law Cases (iPleaders)', type: 'HTML', path: 'pdfs/20 notable Contract Law cases - iPleaders.html' },
-                                { title: 'Sem I Section D Legal Notes', type: 'DOCX', path: 'pdfs/107 Sem - I (2025-26) - Section D Legal .docx' },
-                                { title: 'Case Studies of Sales of Goods', type: 'DOCX', path: 'pdfs/Case studies of Sales of Goods AZct.docx' },
-                                { title: 'Introduction to Legal System Concepts', type: 'PPTX', path: 'pdfs/Introduction to Legal System- Legal conc....pptx' },
-                                { title: 'Landmark Cases in Contract Law', type: 'DOCX', path: 'pdfs/LANDMARK CASES IN CONTRACT LAW.docx' },
-                                { title: 'Law of Contract PPT (UCC)', type: 'PPTX', path: 'pdfs/Law of Contract PPT UCC.pptx' },
-                                { title: 'Company Law Presentation - Lecture 1', type: 'PPTX', path: 'pdfs/Presentation Lecture 1 - Company Law ppt.pptx' },
-                                { title: 'Sale of Goods Act 1930', type: 'PPTX', path: 'pdfs/Sale of Good Act 1930 2.pptx' }
-                            ] 
-                        },
-                        { 
-                            name: 'MM-1', branch: 'marketing', sem: 'sem1', 
-                            files: [
-                                { title: 'Customer Value Presentation', type: 'PPTX', path: 'pdfs/Customer Value.pptx' },
-                                { title: 'Introduction to Marketing', type: 'PPTX', path: 'pdfs/Introduction to Marketing.pptx' },
-                                { title: 'Market Research Presentation', type: 'PPTX', path: 'pdfs/market research.pptx' }
-                            ] 
-                        },
-                        { 
-                            name: 'MSPO', branch: 'hr', sem: 'sem1', 
-                            files: [
-                                { title: 'EI Case Study', type: 'PPTX', path: 'pdfs/EI Case Study.pptx' },
-                                { title: 'Learning Notes', type: 'DOCX', path: 'pdfs/Learning notes.docx' },
-                                { title: 'Robbins & Judge OB Presentation', type: 'PPTX', path: 'pdfs/robbinsjudge_OB_inppt_01.pptx' }
-                            ] 
-                        },
-                        { 
-                            name: 'TOM', branch: 'operations', sem: 'sem1', 
-                            files: [
-                                { title: 'Image 20251213 173601', type: 'JPG', path: 'pdfs/IMG_20251213_173601.jpg' },
-                                { title: 'Image 20251213 173613', type: 'JPG', path: 'pdfs/IMG_20251213_173613.jpg' },
-                                { title: 'Master Technology Trends', type: 'DOCX', path: 'pdfs/Master_Technology_Trends.docx' },
-                                { title: 'McKinsey Technology Trends Outlook 2025', type: 'PDF', path: 'pdfs/mckinsey-technology-trends-outlook-2025.pdf' },
-                                { title: 'Session 1 TOM', type: 'PPTX', path: 'pdfs/Session 1 TOM.pptx' },
-                                { title: 'Session 2 Ops Strategy', type: 'PPTX', path: 'pdfs/Session 2 Ops Strategy.pptx' },
-                                { title: 'Session 4 & 5 Layout', type: 'PPTX', path: 'pdfs/Session 4 & 5 Layout.pptx' }
-                            ] 
-                        }
-                    ];
-
-                    // Automatically count and display total modules
-                    document.getElementById('totalModulesCount').innerText = subjectsData.length;
-
-                    subjectsData.forEach((sub, index) => {
-                        window[`sub_${index}`] = sub;
-
-                        document.write(`
-                            <div class="subject-card bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center hover:border-indigo-600 hover:shadow-md transition flex flex-col justify-between items-center cursor-pointer" style="display: none;" data-name="${sub.name.toLowerCase()}" data-branch="${sub.branch}" data-sem="${sub.sem}" onclick="openModal(${index})">
-                                <div>
-                                    <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded mb-2 inline-block">${sub.branch.toUpperCase()}</span>
-                                    <span class="font-semibold text-sm text-slate-800 my-2 block">${sub.name}</span>
-                                </div>
-                                <span class="text-xs bg-indigo-50 text-indigo-600 font-semibold px-3 py-1.5 rounded-lg hover:bg-indigo-600 hover:text-white transition mt-3 inline-block w-full">
-                                    View Files →
-                                </span>
-                            </div>
-                        `);
-                    });
-                </script>
-
-            </div>
+            <div id="subjectsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4"></div>
         </div>
 
     </main>
@@ -281,18 +119,180 @@
         </div>
     </div>
 
-    <!-- JavaScript Filter & Modal Engine -->
+    <!-- Data, Filter & Modal Engine -->
     <script>
+        const subjectsData = [
+            { 
+                name: 'AMFR', branch: 'finance', sem: 'sem1', 
+                files: [
+                    { title: 'Trial Balance & Ledger Notes (PPT)', type: 'PPTX', path: 'pdfs/AFMR PPT trial balance.pptx' },
+                    { title: 'AMFR PPT 2', type: 'PPTX', path: 'pdfs/amfr ppt 2.pptx' },
+                    { title: 'AMFR PPT1 Fostiima', type: 'PPTX', path: 'pdfs/AMFR PPT1 Fostiima.pptx' },
+                    { title: 'GAAP PPT 3', type: 'PPTX', path: 'pdfs/GAAP-PPT3.pptx' },
+                    { title: 'Ledger 2', type: 'PPTX', path: 'pdfs/ledger2.pptx' },
+                    { title: 'Ratio Q2', type: 'DOCX', path: 'pdfs/Ratio Q2.docx' },
+                    { title: 'Ratio Question', type: 'DOCX', path: 'pdfs/Ratio Question.docx' },
+                    { title: 'Session About Company Terms', type: 'PDF', path: 'pdfs/Session about company terms.pdf' },
+                    { title: 'Transaction 3.3', type: 'PDF', path: 'pdfs/transaction 3.3.pdf' },
+                    { title: 'Transaction 3.4', type: 'PDF', path: 'pdfs/Transaction 3.4.pdf' },
+                    { title: 'Transaction 3.5', type: 'PDF', path: 'pdfs/transaction 3.5.pdf' },
+                    { title: 'Transaction 3.8', type: 'PDF', path: 'pdfs/Transaction 3.8.pdf' },
+                    { title: 'Transaction 3.2', type: 'PDF', path: 'pdfs/transaction3.2.pdf' },
+                    { title: 'Transaction 3.4 (Duplicate)', type: 'PDF', path: 'pdfs/transaction3.4.pdf' },
+                    { title: 'Transaction 3.6', type: 'PDF', path: 'pdfs/transaction3.6.pdf' },
+                    { title: 'Transaction 3.7', type: 'PDF', path: 'pdfs/Transacton 3.7.pdf' },
+                    { title: 'Trial Balance Exercise 1', type: 'DOCX', path: 'pdfs/trial balance-Exercise 1.docx' },
+                    { title: 'Trial Balance PPT Question Solution', type: 'DOCX', path: 'pdfs/trial balance-ppt question solution.docx' },
+                    { title: 'Accounts Mid Term Test 1 Set A1', type: 'PDF', path: 'pdfs/Accounts Mid term Test 1 Set A1.pdf' },
+                    { title: 'AMFR Paper', type: 'DOCX', path: 'pdfs/AMFR Paper.docx' },
+                    { title: 'AMFR Set 1 (23-25)', type: 'DOCX', path: 'pdfs/AMFR set 1 23-25.docx' },
+                    { title: 'AMFR Set 2 (23-25)', type: 'DOCX', path: 'pdfs/AMFR set 2 23-25.docx' },
+                    { title: 'AMFR Set B', type: 'DOCX', path: 'pdfs/AMFR set b.docx' }
+                ] 
+            },
+            { 
+                name: 'Basic Maths', branch: 'analytics', sem: 'sem1', 
+                files: [
+                    { title: 'Chapter 7 Philoid', type: 'PDF', path: 'pdfs/Chapter 7_[Philoid-IN].pdf' },
+                    { title: 'Maths Practice Questions', type: 'PDF', path: 'pdfs/Maths Practice Questions.pdf' },
+                    { title: 'MCQ Basic Maths 1', type: 'DOCX', path: 'pdfs/MCQ BASIC MATHS 1.docx' },
+                    { title: 'Percentages', type: 'PDF', path: 'pdfs/Percentages.pdf' },
+                    { title: 'Profit and Loss', type: 'PDF', path: 'pdfs/PROFIT AND LOSS.pdf' },
+                    { title: 'Ratio and Proportions', type: 'PDF', path: 'pdfs/RATIO AND PROPORTIONS.pdf' }
+                ] 
+            },
+            { 
+                name: 'Digital Marketing', branch: 'marketing', sem: 'sem1', 
+                files: [
+                    { title: 'Affiliate Marketing', type: 'PPTX', path: 'pdfs/AFFILIATE_MARKETING.pptx' },
+                    { title: 'Catalogue Management', type: 'PPTX', path: 'pdfs/Catalouge Mgt [Auto-saved]2.pptx' },
+                    { title: 'Dropshipping', type: 'PPTX', path: 'pdfs/Dropshipping.pptx' },
+                    { title: 'E-Comm Business Models', type: 'PPTX', path: 'pdfs/E-COMM_BUSINESS_MODELS.pptx' },
+                    { title: 'Lead Generation Presentation', type: 'PPTX', path: 'pdfs/Lead_Generation_Presentation.pptx' },
+                    { title: 'Payments in E-Commerce', type: 'PPTX', path: 'pdfs/Payments in ECommerce2.pptx' },
+                    { title: 'Q-Commerce', type: 'PPTX', path: 'pdfs/Q-Commerce2.pptx' },
+                    { title: 'Revenue Streams E-Commerce', type: 'PPTX', path: 'pdfs/Revenue_streams-Ecommerce2.pptx' },
+                    { title: 'Session 4 SCM', type: 'PPTX', path: 'pdfs/Session 4-Scm.pptx' },
+                    { title: 'Social Commerce & Influencer Marketing', type: 'PPTX', path: 'pdfs/Social_Commerce___Influencer_Marketing.pptx' },
+                    { title: 'Expanded Notes Integration', type: 'DOCX', path: 'pdfs/This expanded set of notes integrates the....docx' },
+                    { title: '10 Minute Delivery Audio Analysis', type: 'MP3', path: 'pdfs/दस_मिनट_डिलीवरी_का_असली_गणित (1).mp3' },
+                    { title: 'End Sem Exam (1)', type: 'JPG', path: 'pdfs/end sem exam (1).jpg' },
+                    { title: 'End Sem Exam (2)', type: 'JPG', path: 'pdfs/end sem exam (2).jpg' }
+                ] 
+            },
+            { 
+                name: 'Business Statistics', branch: 'analytics', sem: 'sem1', 
+                files: [
+                    { title: 'Accounts Notes & Material', type: 'PDF', path: 'pdfs/Accounts.pdf' },
+                    { title: 'End Sem Paper 1', type: 'JPG', path: 'pdfs/end sem paper (1).jpg' },
+                    { title: 'End Sem Paper 2', type: 'JPG', path: 'pdfs/end sem paper (2).jpg' },
+                    { title: 'Frequency Distribution', type: 'PDF', path: 'pdfs/frequency distribution (1).pdf' },
+                    { title: 'Unit 1 Presentation (Part A)', type: 'PPTX', path: 'pdfs/UNIT 1 a.pptx' },
+                    { title: 'Unit 1 Classification and Tabulation', type: 'PDF', path: 'pdfs/Unit 1 CLASSIFICATION,TABULATION AN....pdf' },
+                    { title: 'Unit 1 Study Guide', type: 'PDF', path: 'pdfs/Unit 1.pdf' },
+                    { title: 'End Sem (1)', type: 'JPG', path: 'pdfs/end sem (1).jpg' },
+                    { title: 'End Sem (2)', type: 'JPG', path: 'pdfs/end sem (2).jpg' }
+                ] 
+            },
+            { 
+                name: 'Economics', branch: 'finance', sem: 'sem1', 
+                files: [
+                    { title: 'National Income Notes', type: 'PDF', path: 'pdfs/National income.pdf' },
+                    { title: 'Semester 1 Paper', type: 'JPG', path: 'pdfs/paper sem 1.jpg' },
+                    { title: 'Question Bank', type: 'PDF', path: 'pdfs/Question bank.pdf' },
+                    { title: 'Unit 1 Introduction', type: 'PPTX', path: 'pdfs/Unit-1 Intro.pptx' },
+                    { title: 'Unit 2 Demand', type: 'PPTX', path: 'pdfs/Unit-2 Demand.pptx' },
+                    { title: 'Unit 3 Supply', type: 'PPTX', path: 'pdfs/Unit-3 Supply.pptx' }
+                ] 
+            },
+            { 
+                name: 'HR', branch: 'hr', sem: 'sem1', 
+                files: [
+                    { title: 'HRM Notes', type: 'PDF', path: 'pdfs/HRM Notes.pdf' }
+                ] 
+            },
+            {
+                name: 'Excel', branch: 'analytics', sem: 'sem1',
+                files: [
+                    { title: 'Paper End Sem', type: 'JPG', path: 'pdfs/paper end sem.jpg' }
+                ]
+            },
+            { 
+                name: 'Legal Aspects of Business', branch: '', sem: 'sem1', 
+                files: [
+                    { title: '20 Notable Contract Law Cases (iPleaders)', type: 'HTML', path: 'pdfs/20 notable Contract Law cases - iPleaders.html' },
+                    { title: 'Sem I Section D Legal Notes', type: 'DOCX', path: 'pdfs/107 Sem - I (2025-26) - Section D Legal .docx' },
+                    { title: 'Case Studies of Sales of Goods', type: 'DOCX', path: 'pdfs/Case studies of Sales of Goods AZct.docx' },
+                    { title: 'Introduction to Legal System Concepts', type: 'PPTX', path: 'pdfs/Introduction to Legal System- Legal conc....pptx' },
+                    { title: 'Landmark Cases in Contract Law', type: 'DOCX', path: 'pdfs/LANDMARK CASES IN CONTRACT LAW.docx' },
+                    { title: 'Law of Contract PPT (UCC)', type: 'PPTX', path: 'pdfs/Law of Contract PPT UCC.pptx' },
+                    { title: 'Company Law Presentation - Lecture 1', type: 'PPTX', path: 'pdfs/Presentation Lecture 1 - Company Law ppt.pptx' },
+                    { title: 'Sale of Goods Act 1930', type: 'PPTX', path: 'pdfs/Sale of Good Act 1930 2.pptx' }
+                ] 
+            },
+            { 
+                name: 'MM-1', branch: 'marketing', sem: 'sem1', 
+                files: [
+                    { title: 'Customer Value Presentation', type: 'PPTX', path: 'pdfs/Customer Value.pptx' },
+                    { title: 'Introduction to Marketing', type: 'PPTX', path: 'pdfs/Introduction to Marketing.pptx' },
+                    { title: 'Market Research Presentation', type: 'PPTX', path: 'pdfs/market research.pptx' }
+                ] 
+            },
+            { 
+                name: 'MSPO', branch: 'hr', sem: 'sem1', 
+                files: [
+                    { title: 'EI Case Study', type: 'PPTX', path: 'pdfs/EI Case Study.pptx' },
+                    { title: 'Learning Notes', type: 'DOCX', path: 'pdfs/Learning notes.docx' },
+                    { title: 'Robbins & Judge OB Presentation', type: 'PPTX', path: 'pdfs/robbinsjudge_OB_inppt_01.pptx' }
+                ] 
+            },
+            { 
+                name: 'TOM', branch: 'operations', sem: 'sem1', 
+                files: [
+                    { title: 'Image 20251213 173601', type: 'JPG', path: 'pdfs/IMG_20251213_173601.jpg' },
+                    { title: 'Image 20251213 173613', type: 'JPG', path: 'pdfs/IMG_20251213_173613.jpg' },
+                    { title: 'Master Technology Trends', type: 'DOCX', path: 'pdfs/Master_Technology_Trends.docx' },
+                    { title: 'McKinsey Technology Trends Outlook 2025', type: 'PDF', path: 'pdfs/mckinsey-technology-trends-outlook-2025.pdf' },
+                    { title: 'Session 1 TOM', type: 'PPTX', path: 'pdfs/Session 1 TOM.pptx' },
+                    { title: 'Session 2 Ops Strategy', type: 'PPTX', path: 'pdfs/Session 2 Ops Strategy.pptx' },
+                    { title: 'Session 4 & 5 Layout', type: 'PPTX', path: 'pdfs/Session 4 & 5 Layout.pptx' }
+                ] 
+            }
+        ];
+
+        // Render subject cards cleanly into #subjectsGrid
+        const subjectsGrid = document.getElementById('subjectsGrid');
+        subjectsData.forEach((sub, index) => {
+            window[`sub_${index}`] = sub;
+            const branchBadge = sub.branch ? sub.branch.toUpperCase() : 'GENERAL';
+
+            subjectsGrid.innerHTML += `
+                <div class="subject-card bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center hover:border-indigo-600 hover:shadow-md transition flex flex-col justify-between items-center cursor-pointer" style="display: none;" data-name="${sub.name.toLowerCase()}" data-branch="${sub.branch}" data-sem="${sub.sem}" onclick="openModal(${index})">
+                    <div>
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded mb-2 inline-block">${branchBadge}</span>
+                        <span class="font-semibold text-sm text-slate-800 my-2 block">${sub.name}</span>
+                        <span class="text-[11px] text-slate-500 block">${sub.files.length} ${sub.files.length === 1 ? 'Module' : 'Modules'}</span>
+                    </div>
+                    <span class="text-xs bg-indigo-50 text-indigo-600 font-semibold px-3 py-1.5 rounded-lg hover:bg-indigo-600 hover:text-white transition mt-3 inline-block w-full">
+                        View Files →
+                    </span>
+                </div>
+            `;
+        });
+
         function filterSubjects() {
             const searchInput = document.getElementById('searchInput').value.toLowerCase();
             const selectedSemester = document.getElementById('semesterSelect').value;
             const selectedBranch = document.getElementById('branchSelect').value;
             const cards = document.querySelectorAll('.subject-card');
-            
-            const isFilterActive = searchInput.length > 0 || selectedSemester !== "" || selectedBranch !== "";
-            let visibleCount = 0;
 
-            cards.forEach(card => {
+            const isFilterActive = searchInput.length > 0 || selectedSemester !== "" || selectedBranch !== "";
+            let visibleSubjects = 0;
+            let totalModules = 0;
+
+            cards.forEach((card, index) => {
+                const sub = subjectsData[index];
+
                 if (!isFilterActive) {
                     card.style.display = 'none';
                     return;
@@ -308,23 +308,27 @@
 
                 if (matchesSearch && matchesSem && matchesBranch) {
                     card.style.display = 'flex';
-                    visibleCount++;
+                    visibleSubjects++;
+                    totalModules += sub.files.length;
                 } else {
                     card.style.display = 'none';
                 }
             });
 
             if (!isFilterActive) {
+                const allModulesCount = subjectsData.reduce((sum, sub) => sum + sub.files.length, 0);
+                document.getElementById('totalModulesCount').innerText = allModulesCount;
                 document.getElementById('matchCount').innerText = 'Please select a filter or type to view modules';
             } else {
-                document.getElementById('matchCount').innerText = `Showing ${visibleCount} matching subjects`;
+                document.getElementById('totalModulesCount').innerText = totalModules;
+                document.getElementById('matchCount').innerText = `Showing ${visibleSubjects} subjects (${totalModules} modules)`;
             }
         }
 
         function openModal(index) {
             const sub = window[`sub_${index}`];
             document.getElementById('modalTitle').innerText = sub.name;
-            document.getElementById('modalBranch').innerText = sub.branch.toUpperCase();
+            document.getElementById('modalBranch').innerText = sub.branch ? sub.branch.toUpperCase() : 'GENERAL';
 
             let fileListHTML = '';
             sub.files.forEach(file => {
@@ -357,7 +361,7 @@
             }
         }
 
-        // Run filter on load if Semester I is pre-selected
+        // Run filter on load so the initial Semester I count & cards appear
         window.addEventListener('DOMContentLoaded', filterSubjects);
     </script>
 
